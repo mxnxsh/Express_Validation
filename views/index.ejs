@@ -19,8 +19,14 @@
             <p><%=errors.email.msg%></p>
         <%}%>
 
+        Phone Number:
+        <input type="text" name="number" value="<%=number%>"><br/>
+        <%if(errors.number){%>
+            <p><%=errors.number.msg%></p>
+        <%}%>
+
         password:
-        <input type="password" name="password"value="<%=password%>"><br/>
+        <input type="password" name="password" value="<%=password%>"><br/>
         <%if(errors.password){%>
             <p><%=errors.password.msg%></p>
         <%}%> 

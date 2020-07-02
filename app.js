@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 app.get("/",(req,res)=>{
-    res.render("index",{errors:errors,name:"",email:"",password:""})
+    res.render("index",{errors:errors,name:"",email:"",number:"",password:"",})
 });
 
 app.post("/",
@@ -25,6 +25,11 @@ app.post("/",
     
     // Email validation
     check("email","Invalid email id").trim().isEmail(),
+
+    // Phone number
+    check("number")
+    .isInt().withMessage('phone field must contain numbers only')
+    .isLength({min: 10, max: 10}).withMessage('must be 10 digits'),
 
     // confirm password validation
     check('password', 'The password must be 5+ chars long and contain a number')
@@ -41,20 +46,22 @@ app.post("/",
     })
 ],(req,res)=>{
     const errors = validationResult(req);
-    const {name,email,password,cpassword} = req.body
+    const {name,email,password,cpassword,number} = req.body
     console.log(errors.mapped());
     if(!errors.isEmpty()){
         res.render("index",{
             errors:errors.mapped(),
             name:name,
             email:email,
-            password:password
+            password:password,
+            number:number
         });
     }else{
         res.render("login",{
             name:name,
             email:email,
-            password:password
+            password:password,
+            number:number
         })
     }
     
