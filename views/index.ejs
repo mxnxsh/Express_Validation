@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="/">
+        Name:
+        <input type="text" name="name" value="<%=name%>"><br/>
+        <%if(errors.name){%>
+            <p><%=errors.name.msg%></p>
+        <%}%>
+
+        Email:
+        <input type="text" name="email" value="<%=email%>"><br/>
+        <%if(errors.email){%>
+            <p><%=errors.email.msg%></p>
+        <%}%>
+
+        password:
+        <input type="password" name="password"value="<%=password%>"><br/>
+        <%if(errors.password){%>
+            <p><%=errors.password.msg%></p>
+        <%}%> 
+
+        confirm password:
+        <input type="password" name="cpassword"><br/>
+        <%if(errors.cpassword){%>
+            <p><%=errors.cpassword.msg%></p>
+        <%}%>
+        <br/>
+        <input type="submit">
+    </form>
+</body>
+</html>
